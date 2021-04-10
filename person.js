@@ -79,6 +79,23 @@ class Person
 
     randomMove(pos, people)
     {
+        let attempts = 0;
+        let moved = false;
+        while (attempts < 10 && !moved)
+        {
+            let i = Math.max(Math.min((pos[0] + (Math.floor(Math.random() * 3) - 1)), 99), 0);
+            let j = Math.max(Math.min((pos[1] + (Math.floor(Math.random() * 3) - 1)), 99), 0);
+
+            if (people[i][j] == 0)
+            {
+                people[i][j] = this;
+                people[pos[0]][pos[1]] = 0;
+                this.current_location = [i, j];
+                moved = true;
+            }
+            attempts++;
+        }
+        /*
         for (let i = pos[0] - 1; i <= pos[0] + 1; i++)
         {
             for (let j = pos[1] - 1; j <= pos[1] + 1; j++)
@@ -97,6 +114,7 @@ class Person
                 }
             }
         }
+        */
     }
 
     clearUpdate()
