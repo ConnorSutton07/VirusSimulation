@@ -91,13 +91,16 @@ class Grid
     generateBuildings()
     {
         let building_width = 10;
+        let checkLocations = [];
         for (let i = 0; i < this.num_buildings; i++)
         {
 
             let x = Math.floor(Math.random() * building_width)
             let y = Math.floor(Math.random() * building_width)
 
-            let checkLocations = this.buildings.concat(this.neighborhoods)
+            checkLocations = this.buildings.concat(this.neighborhoods)
+            console.log(checkLocations)
+            console.log(checkLocations.filter((a) => (a[0] == x && a[1] == y)))
             //this.neighborhoods.push([x * 10, y * 10])
             if (checkLocations.filter((a) => (a[0] == x && a[1] == y)).length < 1)
             {
@@ -106,6 +109,7 @@ class Grid
         
         }
         console.log(this.buildings)
+        console.log(this.neighborhoods)
     }
 
     generatePopulation()
