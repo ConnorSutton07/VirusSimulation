@@ -7,22 +7,23 @@ class Grid
         this.num_neighborhoods = 8;
         this.population_size = document.getElementById('populationSize').value;
         this.house_size = 2;
+        this.buildings = [];
         
 
-        this.cells = [];
-        
+        this.people = [];
         for (let i = 0; i < 100; i++)
         {
-            this.cells.push([])
+            this.people.push([]);
             for (let j = 0; j < 100; j++)
             {
-                this.cells[i].push(new Cell());
+                this.people[i].push(0);
             }
         }
 
         this.neighborhoods = [];
-        this.houses = this.generateHouses()
-        this.people = this.generatePopulation();
+        this.houses = this.generateHouses();
+        this.generateBuildings();
+        this.generatePopulation();
 
     }
 
@@ -68,20 +69,37 @@ class Grid
         return houses
     }
 
+    generateBuildings()
+    {
+        let buildings = [];
+        let building_width = 10;
+        for (let i = 0; i < this.num_neighborhoods; i++)
+        {
+
+            let x = Math.floor(Math.random() * building_width)
+            let y = Math.floor(Math.random() * building_width)
+
+            let checkLocations = this.buildings.concat(this.neighborhoods)
+            //this.neighborhoods.push([x * 10, y * 10])
+            if (checkLocations.filter((a) => (a[0] == x && a[1] == y)).length < 1)
+            {
+                this.buildings.push([x * 10, y * 10])
+            }
+        
+        }
+    }
+
     generatePopulation()
     {
-        let people = []
         for (let x = 0; x < this.houses.length; x++)// in this.getHouses())
         {
             for (let i = 0; i < 2; i ++) {
                 for (let j = 0; j < 2; j++) {
                     let h = [this.houses[x][0] + i, this.houses[x][1] + j]
-                    this.cells[h[0]][h[1]].newPerson(h);
-                    people.push(h);
+                    this.people[h[0]][h[1]] = new Person(h);
                 }
             }
         }
-        return people;
     }
 
     getHouses()
@@ -94,6 +112,10 @@ class Grid
         return this.people;
     }
 
+    getBuildings() 
+    {
+        return this.buildings;
+    }
 
 }
 

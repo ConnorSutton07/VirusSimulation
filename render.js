@@ -18,10 +18,11 @@ function setup() {
   
 function draw() {
     background(DARK_GREEN);
-    //renderStores();
+
     
     renderHouses(newGrid.getHouses());
-    renderPeople(newGrid.getPeople())
+    renderPeople(newGrid.getPeople());
+    renderStores(newGrid.getBuildings());
     //renderRandomPeople();
 
 }
@@ -38,8 +39,9 @@ function renderRandomPeople(grid) {
     }
 }
 
-function renderStores(grid) { 
-    drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
+function renderStores(getStores) { 
+    //drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
+    getStores.forEach((store) => { drawBuilding(store[0], store[1], 10, BROWN)})
 }
 
 function drawPerson(x, y) {
@@ -53,7 +55,14 @@ function renderHouses(getHouses) {
 }
 
 function renderPeople(getPeople) {
-    getPeople.forEach((person) => {drawPerson(person[0], person[1])});
+    //getPeople.forEach((list, index) => {list.forEach(value) => {if value != 0}});
+    for (let i = 0; i < 100; i ++) {
+       for (let j = 0; j < 100; j ++) {
+            if (getPeople[i][j] != 0){
+                drawPerson(i,j);
+            }
+        }
+    }
 }
 
 function drawBuilding(x, y, size, color) {

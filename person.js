@@ -2,17 +2,17 @@ class Person
 {
     constructor(home)
     {
-        self.vaccinated = false;
-        self.home_location = home;
-        self.current_location = home;
-        self.mask_wearer = (Math.random() < document.getElementById('rateMasks').value)
-        self.infected = Math.random() < 0.10;
-        self.action = 'idle';
+        this.vaccinated = false;
+        this.home_location = home;
+        this.current_location = home;
+        this.mask_wearer = (Math.random() < document.getElementById('rateMasks').value)
+        this.infected = Math.random() < 0.10;
+        this.action = 'idle';
     }
 
     getLocation()
     {
-        return self.current_location;
+        return this.current_location;
     }
 
     getAction()
