@@ -11,10 +11,10 @@ class Grid
         
 
         this.people = [];
-        for (let i = 0; i < 100; i++)
+        for (let i = 0; i < num_grids; i++)
         {
             this.people.push([]);
-            for (let j = 0; j < 100; j++)
+            for (let j = 0; j < num_grids; j++)
             {
                 this.people[i].push(0);
             }
@@ -25,6 +25,16 @@ class Grid
         this.generateBuildings();
         this.generatePopulation();
 
+    }
+
+    update() {
+        for (let i = 0; i < this.num_grids; i ++)  {
+            for (let j = 0; j < this.num_grids; j ++) {
+                if (this.people[i][j] != 0) {
+                    this.people[i][j].update(this.people, this.houses, this.buildings)
+                }
+            }
+        }
     }
 
 

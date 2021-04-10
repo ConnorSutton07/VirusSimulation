@@ -1,6 +1,7 @@
 WIDTH = 1000;
 GRID_SCALER = 100;
 CELL_SIZE = WIDTH / GRID_SCALER;
+BUILDING_SIZE = 10
 RED = '#591527';
 BROWN = '#674C47';
 LIGHT_BROWN = '#BC987E';
@@ -24,6 +25,7 @@ function draw() {
     renderPeople(newGrid.getPeople());
     renderStores(newGrid.getBuildings());
     //renderRandomPeople();
+    newGrid.update();
 
 }
 
@@ -41,7 +43,7 @@ function renderRandomPeople(grid) {
 
 function renderStores(getStores) { 
     //drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
-    getStores.forEach((store) => { drawBuilding(store[0], store[1], 10, BROWN)})
+    getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, BROWN)})
 }
 
 function drawPerson(x, y) {
