@@ -3,9 +3,9 @@ class Grid
     constructor()
     {
         this.num_grids = 100;
-        this.num_buildings = 8;
-        this.num_neighborhoods = 8;
-        this.population_size = 200;//document.getElementById('populationSize').value;
+        this.num_buildings = 30;
+        this.num_neighborhoods = 40;
+        this.population_size = 2;//document.getElementById('populationSize').value;
         this.house_size = 2;
         this.buildings = [];
         
@@ -21,8 +21,8 @@ class Grid
         }
 
         this.neighborhoods = [];
-        this.houses = this.generateHouses();
         this.generateBuildings();
+        this.houses = this.generateHouses();
         this.generatePopulation();
 
     }
@@ -53,17 +53,32 @@ class Grid
         let neighborhood_width = 10
         for (let i = 0; i < this.num_neighborhoods; i++)
         {
-
-            let x = Math.floor(Math.random() * neighborhood_width)
-            let y = Math.floor(Math.random() * neighborhood_width)
-
-
-            //this.neighborhoods.push([x * 10, y * 10])
-            if (this.neighborhoods.filter((a) => (a[0] == x && a[1] == y)).length < 1)
+            let validLocation = false;
+            let x;
+            let y;
+            
+            while(!validLocation)
             {
-                this.neighborhoods.push([x * 10, y * 10])
-            }
+                validLocation = true
+                x = Math.floor(Math.random() * neighborhood_width)
+                y = Math.floor(Math.random() * neighborhood_width)
 
+                for(let i = 0; i < this.num_buildings; i++)
+                {
+                    console.log((this.buildings[i][0]))
+                    if(x*10 == this.buildings[i][0] && y*10 == this.buildings[i][1])
+                    {
+                        validLocation = false;
+                    }
+                }
+
+                if (!(this.neighborhoods.filter((a) => (a[0] == x && a[1] == y)).length < 1 ))
+                {
+                    validLocation = false
+                }
+            } 
+                this.neighborhoods.push([x * 10, y * 10])
+            
         }
 
         let house_width = 2;

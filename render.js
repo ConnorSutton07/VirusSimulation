@@ -19,12 +19,10 @@ function setup() {
 function draw() {
     background(DARK_GREEN);
 
-    
-    renderHouses(newGrid.getHouses());
     renderStores(newGrid.getBuildings());
+    renderHouses(newGrid.getHouses());
     renderPeople(newGrid.getPeople());
     
-    //renderRandomPeople();
     newGrid.update();
 
 }
