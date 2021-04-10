@@ -2,19 +2,19 @@ class Grid
 {
     constructor()
     {
-        this.num_grids = 100;
-        this.num_buildings = 10;
-        this.num_neighborhoods = 10;
-        this.population_size = document.getElementById('populationSize').value;
-        this.house_size = 2;
+        this.num_grids = GRID_SIZE;
+        this.num_buildings = NUM_BUILDINGS
+        this.num_neighborhoods = NUM_NEIGHBORHOODS;
+        this.population_size = POPULATION_SIZE;
+        this.house_size = HOUSE_SIZE;
         this.buildings = [];
         
 
         this.people = [];
-        for (let i = 0; i < this.num_grids; i++)
+        for (let i = 0; i < GRID_SIZE; i++)
         {
             this.people.push([]);
-            for (let j = 0; j < this.num_grids; j++)
+            for (let j = 0; j < GRID_SIZE; j++)
             {
                 this.people[i].push(0);
             }
@@ -29,16 +29,16 @@ class Grid
     }
 
     update() {
-        for (let i = 0; i < this.num_grids; i ++)  {
-            for (let j = 0; j < this.num_grids; j ++) {
+        for (let i = 0; i < GRID_SIZE; i ++)  {
+            for (let j = 0; j < GRID_SIZE; j ++) {
                 if (this.people[i][j] != 0) {
                     this.people[i][j].clearUpdate();
                 }
             }
         }
 
-        for (let i = 0; i < this.num_grids; i ++)  {
-            for (let j = 0; j < this.num_grids; j ++) {
+        for (let i = 0; i < GRID_SIZE; i ++)  {
+            for (let j = 0; j < GRID_SIZE; j ++) {
                 if (this.people[i][j] != 0) {
                     let person = this.people[i][j]
                     if (person.dead)
@@ -56,8 +56,7 @@ class Grid
 
     generateHouses()
     {
-        let neighborhood_width = 10
-        for (let i = 0; i < this.num_neighborhoods; i++)
+        for (let i = 0; i < NUM_NEIGHBORHOODS; i++)
         {
             let validLocation = false;
             let x;
@@ -66,13 +65,12 @@ class Grid
             while(!validLocation)
             {
                 validLocation = true
-                x = Math.floor(Math.random() * neighborhood_width)
-                y = Math.floor(Math.random() * neighborhood_width)
+                x = Math.floor(Math.random() * NEIGHBORHOOD_WIDTH)
+                y = Math.floor(Math.random() * NEIGHBORHOOD_WIDTH)
 
-                for(let i = 0; i < this.num_buildings; i++)
+                for(let i = 0; i < NUM_BUILDINGS; i++)
                 {
-                    console.log((this.buildings[i][0]))
-                    if(x*10 == this.buildings[i][0] && y*10 == this.buildings[i][1])
+                    if(x * 10 == this.buildings[i][0] && y * 10 == this.buildings[i][1])
                     {
                         validLocation = false;
                     }
@@ -83,20 +81,17 @@ class Grid
                     validLocation = false
                 }
             } 
-                this.neighborhoods.push([x * 10, y * 10])
+                this.neighborhoods.push([x * (GRID_SIZE / NEIGHBORHOOD_WIDTH), y * (GRID_SIZE / NEIGHBORHOOD_WIDTH)])
             
         }
 
-        let house_width = 2;
         let houses = []
-        for (let i = 0; i < this.neighborhoods.length; i++)
+        for (let i = 0; i < NUM_NEIGHBORHOODS; i++)
         {
-            for (let j = 0; j < (this.population_size / (this.num_neighborhoods * this.house_size)); j++)
+            for (let j = 0; j < (POPULATION_SIZE / (NUM_NEIGHBORHOODS * HOUSE_SIZE)); j++)
             {
-                //let x = Math.floor(Math.random() * (neighborhood_width / house_width))
-                //let y = Math.floor(Math.random() * (neighborhood_width / house_width))
-                let x = gaussianRandom(0, neighborhood_width / house_width - 1)
-                let y = gaussianRandom(0, neighborhood_width / house_width - 1)
+                let x = gaussianRandom(0, NEIGHBORHOOD_WIDTH / HOUSE_SIZE - 1)
+                let y = gaussianRandom(0, NEIGHBORHOOD_WIDTH / HOUSE_SIZE - 1)
 
                 if (houses.filter((a) => (a[0] == x && a[1] == y)).length < 1)
                 {
@@ -111,13 +106,12 @@ class Grid
 
     generateBuildings()
     {
-        let building_width = 10;
         let checkLocations = [];
-        for (let i = 0; i < this.num_buildings; i++)
+        for (let i = 0; i < NUM_BUILDINGS; i++)
         {
 
-            let x = Math.floor(Math.random() * building_width)
-            let y = Math.floor(Math.random() * building_width)
+            let x = Math.floor(Math.random() * BUILDING_WIDTH);
+            let y = Math.floor(Math.random() * BUILDING_WIDTH);
 
             checkLocations = this.buildings.concat(this.neighborhoods)
             if (checkLocations.filter((a) => (a[0] == x && a[1] == y)).length < 1)
