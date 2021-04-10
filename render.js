@@ -45,7 +45,7 @@ function renderStores(grid) {
 function drawPerson(x, y) {
      let rand = Math.random();
     fill(rand < 0.50? RED : LIGHT_BROWN); // Random color for now.
-    ellipse(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ellipse(x * CELL_SIZE + (CELL_SIZE / 2), y * CELL_SIZE + (CELL_SIZE / 2), CELL_SIZE, CELL_SIZE);
 }
 
 function renderHouses(getHouses) {
