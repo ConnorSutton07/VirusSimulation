@@ -6,8 +6,9 @@ function setup() {
 }
   
 function draw() {
-    background(DARK_GREEN);
-
+    //background(DARK_GREEN);
+    background(LIGHT_BLUE);
+    //noStroke();
     renderStores(newGrid.getBuildings());
     renderHouses(newGrid.getHouses());
     renderPeople(newGrid.getPeople());
@@ -30,23 +31,27 @@ function renderRandomPeople(grid) {
 
 function renderStores(getStores) { 
     //drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
-    getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, BROWN)})
+    //getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, BROWN)})
+    getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, ORANGE)})
 }
 
 function drawPerson(x, y, person) {
      let rand = Math.random();
-    fill(LIGHT_BROWN); // Random color for now.
+    //fill(LIGHT_BROWN); // Random color for now.
+    fill(YELLOW);
     if (person.dead) {
         fill(0, 0, 0)
     }
     else if (person.infected) {
-        fill(RED)
+        //fill(RED)
+        fill(RED2);
     }
     ellipse(x * CELL_SIZE + (CELL_SIZE / 2), y * CELL_SIZE + (CELL_SIZE / 2), CELL_SIZE, CELL_SIZE);
 }
 
 function renderHouses(getHouses) {
-    getHouses.forEach((house) => { drawBuilding(house[0], house[1], 2, GREEN)});
+    //noStroke();
+    getHouses.forEach((house) => { drawBuilding(house[0], house[1], 2, GREEN2)});
 }
 
 function renderPeople(getPeople) {
