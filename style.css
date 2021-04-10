@@ -1,0 +1,28 @@
+body {
+    background-color: #001F33;
+    color: #C9DFF2;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.menu-bar {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 5px 0;
+    padding: 0% 3% 0%;
+    border-radius: 20px;
+    background-color: #003C63;
+    color: #C9DFF2;
+
+}
+
+#simulation-window {
+    display: inline-block;
+}

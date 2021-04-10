@@ -62,7 +62,7 @@ class Grid
         }
     }
 
-    getHomes()
+    getHouses()
     {
         return this.homes;
     }

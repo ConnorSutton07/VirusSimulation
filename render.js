@@ -9,51 +9,49 @@ DARK_GREEN = '#85A68E';
 
 
 function setup() {
-    createCanvas(WIDTH, WIDTH);
+    let canvas = createCanvas(WIDTH, WIDTH);
+    canvas.parent('simulation-window')
+    newGrid = new Grid();
+    frameRate(3);
+    
 }
   
 function draw() {
-    background('#85A68E');
-    // renderStores();
-    renderHouses(grid);
-    // renderPeople();
+    background(DARK_GREEN);
+    renderStores();
     
+    renderHouses(newGrid.getHouses());
+    renderRandomPeople();
 
 }
 
-function renderPeople(grid) { //receives the Grid class
+function renderRandomPeople(grid) {
     for (let i = CELL_SIZE/2; i < WIDTH; i += CELL_SIZE) {
         for (let j = CELL_SIZE/2; j < WIDTH; j += CELL_SIZE) {
             let tempDraw = Math.random();
             if (tempDraw < 0.05) {
               drawPerson(i, j);
             }
-            // drawPerson(i, j); 
+            // drawPerson(i, j); // Fill the board with people.
         }
     }
 }
 
-function renderStores(grid) { //receives the Grid class
-    for (let i = CELL_SIZE/2; i < WIDTH; i += CELL_SIZE) {
-        for (let j = CELL_SIZE/2; j < WIDTH; j += CELL_SIZE) {
-            let tempDraw = Math.random();
-            drawBuilding(50, 50, 10);
-        }
-    }
+function renderStores(grid) { 
+    drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
 }
 
 function drawPerson(x, y) {
      let rand = Math.random();
-    fill(rand < 0.50? RED : LIGHT_BROWN);
+    fill(rand < 0.50? RED : LIGHT_BROWN); // Random color for now.
     ellipse(x, y, CELL_SIZE, CELL_SIZE);
 }
 
-function renderHouses(grid) { //receives the Grid class
-    let homes  = grid.getHomes();
-    homes.forEach((home) => { drawBuilding(50, 50, 2)});
+function renderHouses(getHouses) {
+    getHouses.forEach((house) => { drawBuilding(house[0], house[1], 2, GREEN)});
 }
 
-function drawBuilding(x, y, size) {
-    fill(BROWN);
+function drawBuilding(x, y, size, color) {
+    fill(color);
     rect(x * CELL_SIZE, y * CELL_SIZE, size * CELL_SIZE, size * CELL_SIZE, CELL_SIZE / 2);
 }
