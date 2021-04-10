@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+    <script src="person.js"></script>
+    <script src="cell.js"></script>
+    <script src="grid.js"></script>
+    <script src="render.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virus Simulation</title>
 </head>
 <body>
-    <script src="person.js"></script>
-    <script src="cell.js"></script>
-    <script src="grid.js"></script>
-    <script src="main.js"></script>
+    <h1>Virus Simulation</h1>
+    <div class="wrapper">
+        <div id="simulation-window"></div>
+        <div class="menu-bar">
+            <h1>Parameters</h1>
+            <label for="timeScale">Time Scale: </label><br>
+            <input type="range" min="1" max="100" value="50" class="slider" id="timeScale"><br><br>
+            <label for="populationSize">Population Size: </label><br>
+            <input type="range" min="10" max="1000" value="500" class="slider" id="populationSize"><br><br>
+            <label for="rateInfection">Rate of Infection: </label><br>
+            <input type="range" min="1" max="100" value="50" class="slider" id="rateInfection"><br><br>
+            <label for="rateMasks">Rate of Mask-Wearers: </label><br>
+            <input type="range" min="1" max="100" value="50" class="slider" id="rateMasks"><br><br>
+            <label for="rateMigration">Rate of Migration: </label><br>
+            <input type="range" min="1" max="100" value="50" class="slider" id="rateMigration"><br><br>
+            <label for="socialDistancing">Respect for Social Distancing: </label><br>
+            <input type="range" min="1" max="100" value="50" class="slider" id="socialDistancing"><br><br>
+
+        </div>
+    </div>
 </body>
+    
 </html>

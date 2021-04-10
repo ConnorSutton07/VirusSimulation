@@ -4,8 +4,8 @@ class Grid
     {
         this.num_grids = 100;
         this.num_buildings = 20;
-        this.num_neighborhoods = 10;
-        this.population_size = 200;
+        this.num_neighborhoods = 8;
+        this.population_size = document.getElementById('populationSize').value;
         this.house_size = 2;
         
 
@@ -34,8 +34,9 @@ class Grid
         for (let i = 0; i < this.num_neighborhoods; i++)
         {
 
-            let x = Math.floor(Math.random() * (neighborhood_width - 1))
-            let y = Math.floor(Math.random() * (neighborhood_width - 1))
+            let x = Math.floor(Math.random() * neighborhood_width)
+            let y = Math.floor(Math.random() * neighborhood_width)
+
 
             //this.neighborhoods.push([x * 10, y * 10])
             if (this.neighborhoods.filter((a) => (a[0] == x && a[1] == y)).length < 1)
@@ -49,10 +50,12 @@ class Grid
         let houses = []
         for (let i = 0; i < this.neighborhoods.length; i++)
         {
-            for (let j = 0; j < (this.population_size / (this.num_neighborhoods * this.house_size**2)); j++)
+            for (let j = 0; j < (this.population_size / (this.num_neighborhoods * this.house_size)); j++)
             {
-                let x = Math.floor(Math.random() * (neighborhood_width / house_width))
-                let y = Math.floor(Math.random() * (neighborhood_width / house_width))
+                //let x = Math.floor(Math.random() * (neighborhood_width / house_width))
+                //let y = Math.floor(Math.random() * (neighborhood_width / house_width))
+                let x = gaussianRandom(0, neighborhood_width / house_width - 1)
+                let y = gaussianRandom(0, neighborhood_width / house_width - 1)
 
                 if (houses.filter((a) => (a[0] == x && a[1] == y)).length < 1)
                 {
@@ -93,3 +96,17 @@ class Grid
 
 
 }
+
+function gaussianRand() {
+    var rand = 0;
+  
+    for (var i = 0; i < 6; i += 1) {
+      rand += Math.random();
+    }
+  
+    return rand / 6;
+  }
+
+  function gaussianRandom(start, end) {
+    return Math.floor(start + gaussianRand() * (end - start + 1));
+  }
