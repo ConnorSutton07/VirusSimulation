@@ -13,7 +13,7 @@ function setup() {
     let canvas = createCanvas(WIDTH, WIDTH);
     canvas.parent('simulation-window')
     newGrid = new Grid();
-    frameRate(3);
+    frameRate(15);
 }
   
 function draw() {
