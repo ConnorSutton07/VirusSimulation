@@ -1,14 +1,3 @@
-WIDTH = 1000;
-GRID_SCALER = 100;
-CELL_SIZE = WIDTH / GRID_SCALER;
-BUILDING_SIZE = 10
-RED = '#591527';
-BROWN = '#674C47';
-LIGHT_BROWN = '#BC987E';
-GREEN = '#BFEDCA';
-DARK_GREEN = '#85A68E';
-
-
 function setup() {
     let canvas = createCanvas(WIDTH, WIDTH);
     canvas.parent('simulation-window')
