@@ -5,7 +5,7 @@ class Grid
         this.num_grids = 100;
         this.num_buildings = 8;
         this.num_neighborhoods = 8;
-        this.population_size = document.getElementById('populationSize').value;
+        this.population_size = 200;//document.getElementById('populationSize').value;
         this.house_size = 2;
         this.buildings = [];
         
@@ -28,15 +28,24 @@ class Grid
     }
 
     update() {
+
         for (let i = 0; i < this.num_grids; i ++)  {
             for (let j = 0; j < this.num_grids; j ++) {
                 if (this.people[i][j] != 0) {
-                    this.people[i][j].update(this.people, this.houses, this.buildings)
+                    this.people[i][j].clearUpdate();
+                }
+            }
+        }
+
+        for (let i = 0; i < this.num_grids; i ++)  {
+            for (let j = 0; j < this.num_grids; j ++) {
+                if (this.people[i][j] != 0) {
+                    if (!(this.people[i][j].hasUpdated()))
+                        this.people[i][j].update(this.people, this.houses, this.buildings)
                 }
             }
         }
     }
-
 
 
     generateHouses()

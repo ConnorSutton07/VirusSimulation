@@ -14,7 +14,6 @@ function setup() {
     canvas.parent('simulation-window')
     newGrid = new Grid();
     frameRate(3);
-    
 }
   
 function draw() {
@@ -49,7 +48,7 @@ function renderStores(getStores) {
 
 function drawPerson(x, y) {
      let rand = Math.random();
-    fill(rand < 0.01? RED : LIGHT_BROWN); // Random color for now.
+    fill(LIGHT_BROWN); // Random color for now.
     ellipse(x * CELL_SIZE + (CELL_SIZE / 2), y * CELL_SIZE + (CELL_SIZE / 2), CELL_SIZE, CELL_SIZE);
 }
 
