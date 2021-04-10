@@ -6,13 +6,17 @@ class Person
         this.home_location = home;
         this.current_location = home;
         this.destination = home;
-        this.mask_wearer = (Math.random() < ((document.getElementById('rateMasks').value) / 100))
+        this.mask_wearer = Math.random() > (document.getElementById('rateMasks').value / 100)
+        this.social_distancer = Math.random() > (document.getElementById('socialDistancing').value / 100)
+        this.migration_change = document.getElementById('rateMigration').value / 100;
+        this.death_chance = document.getElementById('lethality').value / 100000;
         this.infected = Math.random() < 0.05;
         this.been_infected = this.infected
         this.time_infected = 0
         this.action = 'idle';
         this.updated = false;
         this.dead = false;
+        this.isMigrating = false;
     }
 
     getLocation()
@@ -22,7 +26,7 @@ class Person
 
     isMove() {
         if (this.action == 'idle') {
-            if (Math.random() > 0.99) {
+            if (Math.random() > 0.995) {
                 this.action = 'moving'
                 return true
             }
@@ -95,8 +99,8 @@ class Person
         }
     }
     death() {
-        if (Math.random > 0.99) {
-            this.dead = true
+        if (Math.random() < this.death_chance) {
+            this.dead = true;
         }
     }
 
@@ -138,26 +142,6 @@ class Person
             }
             attempts++;
         }
-        /*
-        for (let i = pos[0] - 1; i <= pos[0] + 1; i++)
-        {
-            for (let j = pos[1] - 1; j <= pos[1] + 1; j++)
-            {
-                i = Math.max(Math.min(i, 99), 0);
-                j = Math.max(Math.min(j, 99), 0);
-                if (!(i == pos[0] && j == pos[1]))
-                {
-                    if (people[i][j] == 0)
-                    {
-                        people[i][j] = this;
-                        people[pos[0]][pos[1]] = 0;
-                        this.current_location = [i, j];
-                        return;
-                    }
-                }
-            }
-        }
-        */
     }
 
     clearUpdate()

@@ -24,11 +24,11 @@ class Grid
         this.houses = this.generateHouses();
         this.generateBuildings();
         this.generatePopulation();
+        this.deaths = 0;
 
     }
 
     update() {
-
         for (let i = 0; i < this.num_grids; i ++)  {
             for (let j = 0; j < this.num_grids; j ++) {
                 if (this.people[i][j] != 0) {
@@ -40,8 +40,14 @@ class Grid
         for (let i = 0; i < this.num_grids; i ++)  {
             for (let j = 0; j < this.num_grids; j ++) {
                 if (this.people[i][j] != 0) {
-                    if (!(this.people[i][j].hasUpdated()))
-                        this.people[i][j].update(this.people, this.houses, this.buildings)
+                    let person = this.people[i][j]
+                    if (person.dead)
+                    {
+                        this.people[i][j] = 0;
+                        this.deaths++;
+                    }
+                    else if (!person.hasUpdated())
+                        person.update(this.people, this.houses, this.buildings)
                 }
             }
         }
@@ -99,17 +105,11 @@ class Grid
             let y = Math.floor(Math.random() * building_width)
 
             checkLocations = this.buildings.concat(this.neighborhoods)
-            console.log(checkLocations)
-            console.log(checkLocations.filter((a) => (a[0] == x && a[1] == y)))
-            //this.neighborhoods.push([x * 10, y * 10])
             if (checkLocations.filter((a) => (a[0] == x && a[1] == y)).length < 1)
             {
                 this.buildings.push([x * 10, y * 10])
             }
-        
         }
-        console.log(this.buildings)
-        console.log(this.neighborhoods)
     }
 
     generatePopulation()
@@ -138,6 +138,11 @@ class Grid
     getBuildings() 
     {
         return this.buildings;
+    }
+
+    getDeaths()
+    {
+        return this.deaths;
     }
 
 }
