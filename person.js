@@ -79,10 +79,11 @@ class Person
                 }    
 
             }
-            if (this.time_infected == 20) {
+            if (this.time_infected == 200) {
                 this.been_infected = true
                 this.infected = false
             }
+
             if (this.infected) {
                 this.infect(people, houses, buildings) 
                 this.death()
@@ -100,34 +101,20 @@ class Person
     }
 
     infect(people, houses, buildings) {
-        let random_chance = 0.55
+        let pos = [this.current_location[0], this.current_location[1]];
         for (let i = -1; i < 2; i ++) {
             for (let j = -1; j < 2; j ++) {
-                if ( (1 < (this.current_location[0]+ i) < 98) && (1 < (this.current_location[1]+ j) < 98)) {
-                    console.log("x: " + str(this.current_location[0] + i), "y: " + str(this.current_location[1] + j))
-                    let neighbor = people[this.current_location[0] +i][this.current_location[1] + j]
-                    console.log("neighbor: ",neighbor)
+                if (pos[0] + i < 98 && pos[0] + i > 1 && pos[1] + j < 98 && pos[1] + j > 1)
+                {
+                    let neighbor = people[pos[0] + i][pos[1] + j]
                     if (neighbor != 0) {
-                        if (!neighbor.been_infected) {
-                            if (!neighbor.infected) {
-                                if (this.mask_wearer && neighbor.mask_wearer) {
-                                    random_chance = 0.01
-                                }
-                                else if (this.mask_wearer && !neighbor.mask_wearer ) {
-                                    random_chance = 0.05
-                                }
-                                else if (!this.mask_wearer && neighbor.mask_wearer) {
-                                    random_chance = 0.35
-                                }
-                                if (Math.random() > (1 - random_chance)) {
-                                    neighbor.infected = true
-                                    console.log("infected!")
-                                }
-                            }
+                        if (!neighbor.been_infected && !neighbor.infected) {
+                            let infection_chance = 0.1 - (0.095 * this.mask_wearer) - (0.004 * neighbor.mask_wearer);
+                            if (infection_chance > Math.random())
+                                neighbor.infected = true
                         }
                     }
                 }
-
             }
         }
     }
