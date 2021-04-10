@@ -13,7 +13,7 @@ function setup() {
     let canvas = createCanvas(WIDTH, WIDTH);
     canvas.parent('simulation-window')
     newGrid = new Grid();
-    frameRate(3);
+    frameRate(15);
 }
   
 function draw() {
@@ -44,9 +44,15 @@ function renderStores(getStores) {
     getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, BROWN)})
 }
 
-function drawPerson(x, y) {
+function drawPerson(x, y, person) {
      let rand = Math.random();
     fill(LIGHT_BROWN); // Random color for now.
+    if (person.dead) {
+        fill(0, 0, 0)
+    }
+    else if (person.infected) {
+        fill(RED)
+    }
     ellipse(x * CELL_SIZE + (CELL_SIZE / 2), y * CELL_SIZE + (CELL_SIZE / 2), CELL_SIZE, CELL_SIZE);
 }
 
@@ -59,7 +65,7 @@ function renderPeople(getPeople) {
     for (let i = 0; i < 100; i ++) {
        for (let j = 0; j < 100; j ++) {
             if (getPeople[i][j] != 0){
-                drawPerson(i,j);
+                drawPerson(i,j, getPeople[i][j]);
             }
         }
     }
