@@ -11,6 +11,7 @@ class Grid
 
         this.cells = [];
         this.neighborhoods = [];
+        this.homes = [];
 
         for (let i = 0; i < this.numGrids; i++)
         {
@@ -30,10 +31,16 @@ class Grid
         let neighborhood_width = 10
         for (let i = 0; i < this.num_neighborhoods; i++)
         {
+
             let x = Math.floor(Math.random() * neighborhood_width)
             let y = Math.floor(Math.random() * neighborhood_width)
 
-            this.neighborhoods.push([x * 10, y * 10])
+            //this.neighborhoods.push([x * 10, y * 10])
+            if (this.neighborhoods.filter((a) => (a[0] == x && a[1] == y)).length < 1)
+            {
+                this.neighborhoods.push([x * 10, y * 10])
+            }
+
         }
 
         let house_width = 2;
@@ -44,11 +51,20 @@ class Grid
                 let x = Math.floor(Math.random() * (neighborhood_width / house_width))
                 let y = Math.floor(Math.random() * (neighborhood_width / house_width))
 
-                
+                if (this.homes.filter((a) => (a[0] == x && a[1] == y)).length < 1)
+                {
+                    x = (x * 2) + this.neighborhoods[i][0];
+                    y = (y * 2) + this.neighborhoods[i][1];
+                    this.homes.push([x, y])
+                    //console.log([x, y])
+                }
             }
         }
+    }
 
-
+    getHomes()
+    {
+        return this.homes;
     }
 
     
