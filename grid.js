@@ -3,9 +3,9 @@ class Grid
     constructor()
     {
         this.num_grids = 100;
-        this.num_buildings = 30;
-        this.num_neighborhoods = 40;
-        this.population_size = 2;//document.getElementById('populationSize').value;
+        this.num_buildings = 10;
+        this.num_neighborhoods = 10;
+        this.population_size = document.getElementById('populationSize').value;
         this.house_size = 2;
         this.buildings = [];
         
