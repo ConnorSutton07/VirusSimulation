@@ -37,6 +37,10 @@ class Person
 
     getDestination(buildings) {
         this.action = 'idle';
+        if (Math.random() < this.migration_change)
+        {
+            this.isMigrating = true;
+        }
         if (!(this.current_location[0] == this.home_location[0] && this.current_location[1] == this.home_location[1])) { // if not at home
             if (Math.random() > 0.25) {
                 return [this.home_location[0], this.home_location[1]]
