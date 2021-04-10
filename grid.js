@@ -3,7 +3,7 @@ class Grid
     constructor()
     {
         this.num_grids = 100;
-        this.num_buildings = 20;
+        this.num_buildings = 8;
         this.num_neighborhoods = 8;
         this.population_size = document.getElementById('populationSize').value;
         this.house_size = 2;
@@ -11,10 +11,10 @@ class Grid
         
 
         this.people = [];
-        for (let i = 0; i < num_grids; i++)
+        for (let i = 0; i < this.num_grids; i++)
         {
             this.people.push([]);
-            for (let j = 0; j < num_grids; j++)
+            for (let j = 0; j < this.num_grids; j++)
             {
                 this.people[i].push(0);
             }
@@ -81,9 +81,8 @@ class Grid
 
     generateBuildings()
     {
-        let buildings = [];
         let building_width = 10;
-        for (let i = 0; i < this.num_neighborhoods; i++)
+        for (let i = 0; i < this.num_buildings; i++)
         {
 
             let x = Math.floor(Math.random() * building_width)
@@ -97,6 +96,7 @@ class Grid
             }
         
         }
+        console.log(this.buildings)
     }
 
     generatePopulation()
