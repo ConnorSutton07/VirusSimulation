@@ -2,26 +2,10 @@ class Grid
 {
     constructor()
     {
-        this.num_grids = GRID_SIZE;
-        this.num_buildings = NUM_BUILDINGS
-        this.num_neighborhoods = NUM_NEIGHBORHOODS;
-        this.population_size = POPULATION_SIZE;
-        this.house_size = HOUSE_SIZE;
         this.buildings = [];
-        
-
-        this.people = [];
-        for (let i = 0; i < GRID_SIZE; i++)
-        {
-            this.people.push([]);
-            for (let j = 0; j < GRID_SIZE; j++)
-            {
-                this.people[i].push(0);
-            }
-        }
-
         this.neighborhoods = [];
         this.generateBuildings();
+        this.people = this.getEmptyPeople();
         this.houses = this.generateHouses();
         this.generatePopulation();
         this.deaths = 0;
@@ -52,7 +36,6 @@ class Grid
             }
         }
     }
-
 
     generateHouses()
     {
@@ -152,6 +135,21 @@ class Grid
     getDeaths()
     {
         return this.deaths;
+    }
+
+    getEmptyPeople()
+    {
+        let people = [];
+
+        for (let i = 0; i < GRID_SIZE; i++)
+        {
+            people.push([]);
+            for (let j = 0; j < GRID_SIZE; j++)
+            {
+                people[i].push(0);
+            }
+        }
+        return people;
     }
 
 }
