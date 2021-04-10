@@ -7,14 +7,13 @@ function setup() {
   
 function draw() {
     //background(DARK_GREEN);
-    background(LIGHT_BLUE);
+    background(GREEN2);
     //noStroke();
     renderStores(newGrid.getBuildings());
     renderHouses(newGrid.getHouses());
     renderPeople(newGrid.getPeople());
     
     newGrid.update();
-
 }
 
 function renderRandomPeople(grid) {
@@ -32,7 +31,7 @@ function renderRandomPeople(grid) {
 function renderStores(getStores) { 
     //drawBuilding(50, 50, 10, BROWN); // Draw single store for now.
     //getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, BROWN)})
-    getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, ORANGE)})
+    getStores.forEach((store) => { drawBuilding(store[0], store[1], BUILDING_SIZE, YELLOW)})
 }
 
 function drawPerson(x, y, person) {
@@ -51,7 +50,7 @@ function drawPerson(x, y, person) {
 
 function renderHouses(getHouses) {
     //noStroke();
-    getHouses.forEach((house) => { drawBuilding(house[0], house[1], 2, GREEN2)});
+    getHouses.forEach((house) => { drawBuilding(house[0], house[1], 2, ORANGE)});
 }
 
 function renderPeople(getPeople) {

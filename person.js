@@ -130,7 +130,7 @@ class Person
                 {
                     let neighbor = people[pos[0] + i][pos[1] + j]
                     if (neighbor != 0) {
-                        if (!neighbor.been_infected && !neighbor.infected) {
+                        if (!neighbor.infected) {
                             let infection_chance = 0.1 - (0.095 * this.mask_wearer) - (0.004 * neighbor.mask_wearer);
                             if (infection_chance > Math.random())
                                 neighbor.infected = true
