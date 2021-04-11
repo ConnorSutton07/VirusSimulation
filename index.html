@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">    
     <title>Virus Simulation</title>
 </head>
 <body>
@@ -35,13 +37,16 @@
             <input type="range" min="1" max="1000" value="50" class="slider" id="lethality"><br><br>
 
             <label for="rateMasks">Rate of Mask-Wearers: </label><br>
-            <input type="range" min="1" max="100" value="35" class="slider" id="rateMasks"><br><br>
+            <input type="range" min="1" max="100" value="25" class="slider" id="rateMasks"><br><br>
 
             <label for="rateMigration">Rate of Migration: </label><br>
             <input type="range" min="1" max="5" value="2" class="slider" id="rateMigration"><br><br>
 
             <label for="infectionDuration">Infection Duration: </label><br>
-            <input type="range" min="200" max="1500" value="1000" class="slider" id="infectionDuration"><br><br>
+            <input type="range" min="200" max="1500" value="700" class="slider" id="infectionDuration"><br><br>
+
+            <label for="socialDistancing">Rate of Social Distancing: </label><br>
+            <input type="range" min="0" max="100" value="50" class="slider" id="socialDistancing"><br><br>
 
             <label for="debug">Debug mode: </label><br>
             <input type="checkbox" id="debug"><br><br>
@@ -62,7 +67,6 @@
                     <td>Time Passed:</td>
                     <td id="time-passed">00:00:00</td>
                 </tr>
-                <tr><td>Survived Illness?</td><td></td></tr>
             </table>
         </div>
     </div>

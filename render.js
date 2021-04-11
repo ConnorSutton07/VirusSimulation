@@ -31,7 +31,6 @@ function setup() {
     sixtyFPS.onchange = () => {
         frameRate(60);
     }
-    console.log(newGrid.population_size);
 
     populationSize.onchange = () => {
         time = 0;
@@ -53,6 +52,10 @@ function setup() {
 
     infectionDuration.onchange = () => {
         INFECTION_DURATION = infectionDuration.value;
+    }
+
+    socialDistancing.onchange = () => {
+        SOCIAL_DISTANCE_RATE = socialDistancing.value / 100;
     }
 
     relaunchSim.onclick = () => {
@@ -190,7 +193,7 @@ function formatTime(totalMinuts) {
     // let seconds =  (minuts - rMinuts) * 60;
     // let rSeconds = floor(seconds);
 
-    return `${rDays} days ${rHours} hours ${rMinuts} minuts`;
+    return `${rDays} days ${rHours} hours ${rMinuts} minutes`;
 }
 
 function drawAllTombstones(tombstones) {

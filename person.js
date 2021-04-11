@@ -7,8 +7,8 @@ class Person
         this.current_location = home;
         this.destination = home;
         this.mask_wearer = Math.random() < MASK_RATE;
-        // this.social_distancer = SOCIAL_DISTANCE_RATE;
-        this.infected = 0; //Math.random() < 0.05;
+        this.social_distancer = Math.random() < SOCIAL_DISTANCE_RATE;
+        this.infected = 0;
         this.been_infected = this.infected
         this.time_infected = 0
         this.action = 'idle';
@@ -22,13 +22,25 @@ class Person
         return this.current_location;
     }
 
-    isMove() {
-        if (this.action == 'idle') {
-            if (Math.random() > 0.995) {
-                this.action = 'moving'
-                return true
+    isMove() 
+    {
+        if (this.action == 'idle') 
+        {
+            if (this.social_distancer)
+            {
+                if (Math.random() > 0.999)
+                {
+                    this.action = 'moving';
+                    return true;
+                }
+                else return false;
             }
-            return false
+            else if (Math.random() > 0.995)
+            { 
+                this.action = 'moving';
+                return true;
+            }
+            else return false;
         }
         return true;
     }
@@ -52,7 +64,6 @@ class Person
         if (Math.random() < MIGRATION_RATE)
         {
             this.isMigrating = true;
-            console.log("Migrator");
             return [GRID_SIZE - 1, Math.floor(Math.random() * 100)];
         }
         if (!(this.current_location[0] == this.home_location[0] && this.current_location[1] == this.home_location[1])) { // if not at home
@@ -61,11 +72,19 @@ class Person
             }
         }
         let building = buildings[Math.floor(Math.random() * buildings.length)];
+
         let BUILDING_WIDTH = 10; //this should reflect what is in render.js
         let x = building[0] + Math.floor(Math.random() * BUILDING_WIDTH);
         let y = building[1] + Math.floor(Math.random() * BUILDING_WIDTH);
-        return [x,y];
 
+        if (this.social_distancer)
+        {
+            BUILDING_WIDTH = 5; //this should reflect what is in render.js
+            x = building[0] + (Math.floor(Math.random() * BUILDING_WIDTH) * 2);
+            y = building[1] + (Math.floor(Math.random() * BUILDING_WIDTH) * 2);
+        }
+        //console.log("SD: ", this.social_distancer, " DEST: ", x, ", ", y);
+        return [x,y];
     }
 
     update(people, houses, buildings) {

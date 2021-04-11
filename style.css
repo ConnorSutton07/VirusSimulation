@@ -1,11 +1,16 @@
 body {
     background-color: #001F33;
     color: #C9DFF2;
-    font-family: Helvetica, Arial, sans-serif;
+    /* font-family: Helvetica, Arial, sans-serif; */
+    font-family: 'Montserrat', sans-serif, Arial;
 }
 
 h1 {
     text-align: center;
+}
+
+table {
+    width: 100%;
 }
 
 button {
