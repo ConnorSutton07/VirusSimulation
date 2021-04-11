@@ -6,8 +6,8 @@ class Person
         this.home_location = home;
         this.current_location = home;
         this.destination = home;
-        this.mask_wearer = Math.random() > MASK_RATE;
-        this.social_distancer = SOCIAL_DISTANCE_RATE;
+        this.mask_wearer = Math.random() < MASK_RATE;
+        // this.social_distancer = SOCIAL_DISTANCE_RATE;
         this.infected = 0; //Math.random() < 0.05;
         this.been_infected = this.infected
         this.time_infected = 0

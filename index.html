@@ -14,15 +14,15 @@
         <div class="menu-bar">
             <h1>Parameters</h1>
             <label for="timeScale">Time Scale: </label><br>
-            <input type="radio" id="one-fps" name="fps" value="1">
+            <input type="radio" id="oneFPS" name="fps" value="1">
             <label for="one">1</label>
-            <input type="radio" id="fifteen-fps" name="fps" value="15" checked>
+            <input type="radio" id="fifteenFPS" name="fps" value="15" checked>
             <label for="fifteen">15</label>
-            <input type="radio" id="thirty-fps" name="fps" value="30">
+            <input type="radio" id="thirtyFPS" name="fps" value="30">
             <label for="thirty">30</label>
-            <input type="radio" id="forty-five-fps" name="fps" value="45">
+            <input type="radio" id="fortyFiveFPS" name="fps" value="45">
             <label for="forty-five">45</label>
-            <input type="radio" id="sixty-fps" name="fps" value="60">
+            <input type="radio" id="sixtyFPS" name="fps" value="60">
             <label for="sixty">60</label><br><br>
 
             <label for="populationSize">Population Size: </label><br>
@@ -35,18 +35,38 @@
             <input type="range" min="1" max="1000" value="50" class="slider" id="lethality"><br><br>
 
             <label for="rateMasks">Rate of Mask-Wearers: </label><br>
-            <input type="range" min="1" max="100" value="50" class="slider" id="rateMasks"><br><br>
+            <input type="range" min="1" max="100" value="35" class="slider" id="rateMasks"><br><br>
 
             <label for="rateMigration">Rate of Migration: </label><br>
             <input type="range" min="1" max="5" value="1" class="slider" id="rateMigration"><br><br>
 
+<<<<<<< HEAD
             <label for="socialDistancing">Respect for Social Distancing: </label><br>
             <input type="range" min="1" max="100" value="100" class="slider" id="socialDistancing"><br><br>
+=======
+            <label for="infectionDuration">Infection Duration: </label><br>
+            <input type="range" min="200" max="1500" value="1000" class="slider" id="infectionDuration"><br><br>
+
+>>>>>>> fde1a54de9d00ca6b76e3444e912f93b225b5fce
             <label for="debug">Debug mode: </label><br>
             <input type="checkbox" id="debug"><br><br>
 
             <h1>Statistics</h1>
-
+            <table>
+                <tr>
+                    <td>People Infected:</td>
+                    <td id="people-infected">0% 0/0</td>
+                </tr>
+                <tr>
+                    <td>Deaths:</td>
+                    <td id="deaths">0</td>
+                </tr>
+                <tr>
+                    <td>Time Passed:</td>
+                    <td id="time-passed">00:00:00</td>
+                </tr>
+                <tr><td>Survived Illness?</td><td></td></tr>
+            </table>
         </div>
     </div>
 
