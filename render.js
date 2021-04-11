@@ -31,7 +31,6 @@ function setup() {
     sixtyFPS.onchange = () => {
         frameRate(60);
     }
-    console.log(newGrid.population_size);
 
     populationSize.onchange = () => {
         time = 0;
