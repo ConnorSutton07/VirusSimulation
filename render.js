@@ -12,10 +12,7 @@ function setup() {
     debug = select("#debug").elt;
     frameRate(15);
 
-    
-
-    time = 0;
-    
+    time = 0; 
      
     console.log(radioFPS1)
 
@@ -49,23 +46,12 @@ function setup() {
         time = 0;
         POPULATION_SIZE = populationSize.value;
         newGrid = new Grid();
-
     }
 
     lethality.onchange = () => {
         time = 0;
         DEATH_RATE = lethality.value / 100000;
-
     }
-
-    // rateInfection.onchange = () => {
-        
-    //     time = 0;
-    //     POPULATION_SIZE = rateInfection.value;
-    //     newGrid = new Grid();
-
-    //     console.log("grid pop", newGrid.population_size, rateInfection.value)
-    // }
 
     rateMigration.onchange = () => {
         time = 0;
@@ -88,9 +74,7 @@ function draw() {
         console.log("Migration rate:", MIGRATION_RATE, "Lethality:", DEATH_RATE)
     }
     
-    
     newGrid.update();
-
 }
 
 function renderRandomPeople(grid) {
@@ -183,8 +167,6 @@ function drawBuilding(x, y, size, color) {
     fill(color);
     rect(x * CELL_SIZE, y * CELL_SIZE, size * CELL_SIZE, size * CELL_SIZE, CELL_SIZE / 2);
 }
-
-
 
 function displayFPS(tick) {
     fill(255, 255, 255);
