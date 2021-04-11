@@ -158,7 +158,7 @@ class Grid
             return amtOfInfectedPeople/amtOfPeople;
         }
 
-        return `${floor(amtOfInfectedPeople/amtOfPeople * 100)}% (${amtOfInfectedPeople}/${amtOfPeople})`;
+        return `${floor(amtOfInfectedPeople/amtOfPeople * 100)} % (${amtOfInfectedPeople}/${amtOfPeople})`;
     }
 
     getEmptyPeople()
