@@ -155,7 +155,8 @@ class Grid
          }
 
         if (returnDecimal) {
-            return amtOfInfectedPeople/amtOfPeople;
+            console.log(amtOfInfectedPeople, amtOfPeople)
+            return amtOfInfectedPeople / amtOfPeople;
         }
 
         return `${floor(amtOfInfectedPeople/amtOfPeople * 100)} % (${amtOfInfectedPeople}/${amtOfPeople})`;
