@@ -8,7 +8,7 @@ class Person
         this.destination = home;
         this.mask_wearer = Math.random() < MASK_RATE;
         this.social_distancer = Math.random() < SOCIAL_DISTANCE_RATE;
-        this.infected = 0; //Math.random() < 0.05;
+        this.infected = 0;
         this.been_infected = this.infected
         this.time_infected = 0
         this.action = 'idle';
@@ -33,13 +33,14 @@ class Person
                     this.action = 'moving';
                     return true;
                 }
-                return false;
+                else return false;
             }
             else if (Math.random() > 0.995)
             { 
                 this.action = 'moving';
                 return true;
             }
+            else return false;
         }
         return true;
     }
@@ -63,7 +64,6 @@ class Person
         if (Math.random() < MIGRATION_RATE)
         {
             this.isMigrating = true;
-            console.log("Migrator");
             return [GRID_SIZE - 1, Math.floor(Math.random() * 100)];
         }
         if (!(this.current_location[0] == this.home_location[0] && this.current_location[1] == this.home_location[1])) { // if not at home
@@ -83,7 +83,7 @@ class Person
             x = building[0] + (Math.floor(Math.random() * BUILDING_WIDTH) * 2);
             y = building[1] + (Math.floor(Math.random() * BUILDING_WIDTH) * 2);
         }
-
+        //console.log("SD: ", this.social_distancer, " DEST: ", x, ", ", y);
         return [x,y];
     }
 

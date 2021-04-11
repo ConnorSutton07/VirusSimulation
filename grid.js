@@ -140,7 +140,7 @@ class Grid
 
     getCurrentInfectedAmount(returnDecimal)
     {
-        let allPeople = this.getPeople()
+        let allPeople = this.getPeople();
         let amtOfPeople = 0;
         let amtOfInfectedPeople = 0;
 

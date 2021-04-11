@@ -54,6 +54,10 @@ function setup() {
     infectionDuration.onchange = () => {
         INFECTION_DURATION = infectionDuration.value;
     }
+
+    socialDistancing.onchange = () => {
+        SOCIAL_DISTANCE_RATE = socialDistancing.value / 100;
+    }
 }
   
 function draw() {
