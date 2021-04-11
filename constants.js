@@ -18,6 +18,7 @@ var SOCIAL_DISTANCE_RATE = document.getElementById('socialDistancing').value / 1
 var MIGRATION_RATE       = document.getElementById('rateMigration').value / 100;
 var DEATH_RATE           = document.getElementById('lethality').value / 100000;
 var INFECTION_DURATION   = 200;
+var INFECTION_RATE       = document.getElementById('rateInfection').value / 500;
 
 
 // Rendering
