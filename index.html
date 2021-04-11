@@ -14,7 +14,16 @@
         <div class="menu-bar">
             <h1>Parameters</h1>
             <label for="timeScale">Time Scale: </label><br>
-            <input type="range" min="1" max="100" value="50" class="slider" id="timeScale"><br><br>
+            <input type="radio" id="one-fps" name="fps" value="1">
+            <label for="one">1</label>
+            <input type="radio" id="fifteen-fps" name="fps" value="15" checked>
+            <label for="fifteen">15</label>
+            <input type="radio" id="thirty-fps" name="fps" value="30">
+            <label for="thirty">30</label>
+            <input type="radio" id="forty-five-fps" name="fps" value="45">
+            <label for="forty-five">45</label>
+            <input type="radio" id="sixty-fps" name="fps" value="60">
+            <label for="sixty">60</label><br><br>
 
             <label for="populationSize">Population Size: </label><br>
             <input type="range" min="10" max="1000" value="500" class="slider" id="populationSize"><br><br>
@@ -33,6 +42,10 @@
 
             <label for="socialDistancing">Respect for Social Distancing: </label><br>
             <input type="range" min="1" max="100" value="50" class="slider" id="socialDistancing"><br><br>
+            <label for="debug">Debug mode: </label><br>
+            <input type="checkbox" id="debug"><br><br>
+
+            <h1>Statistics</h1>
 
         </div>
     </div>
