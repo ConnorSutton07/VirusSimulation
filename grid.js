@@ -9,6 +9,7 @@ class Grid
         this.houses = this.generateHouses();
         this.generatePopulation();
         this.deaths = 0;
+        
 
     }
 
@@ -154,6 +155,8 @@ class Grid
              }
          }
 
+        DEATH_RATE = INITIAL_DEATH_RATE + ((amtOfInfectedPeople / amtOfPeople) / 10);
+        
         if (returnDecimal) {
             console.log(amtOfInfectedPeople, amtOfPeople)
             return amtOfInfectedPeople / amtOfPeople;

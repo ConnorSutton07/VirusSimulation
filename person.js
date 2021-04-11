@@ -78,7 +78,6 @@ class Person
         }
         if (!this.dead) {
             if (this.isMove()) {
-                //Currently allows for movement through buildings 
                 this.normalMove(pos, people);
             }
             if (this.time_infected == INFECTION_DURATION) {
@@ -128,7 +127,7 @@ class Person
         }
     }
 
-    infect(people, houses, buildings) {
+    infect(people) {
         let pos = [this.current_location[0], this.current_location[1]];
         for (let i = -1; i < 2; i ++) {
             for (let j = -1; j < 2; j ++) {
