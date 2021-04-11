@@ -9,6 +9,7 @@ class Grid
         this.houses = this.generateHouses();
         this.generatePopulation();
         this.deaths = 0;
+        this.tombstones = [];
 
     }
 
@@ -28,6 +29,7 @@ class Grid
                     if (person.dead)
                     {
                         this.people[i][j] = 0;
+                        this.tombstones.push([i,j]);
                         this.deaths++;
                     }
                     else if (!person.hasUpdated())
