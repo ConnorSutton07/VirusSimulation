@@ -65,6 +65,7 @@ function draw() {
     
     background(DARK_GREEN);
 
+    drawAllTombstones(newGrid.tombstones);
     renderStores(newGrid.getBuildings(), debug.checked);
     renderHouses(newGrid.getHouses());
     renderPeople(newGrid.getPeople(), debug.checked);
@@ -189,4 +190,20 @@ function formatTime(totalMinuts) {
     // let rSeconds = floor(seconds);
 
     return `${rDays} days ${rHours} hours ${rMinuts} minuts`;
+}
+
+function drawAllTombstones(tombstones) {
+    tombstones.forEach((t) => drawTombstone(t[0], t[1]));
+}
+
+function drawTombstone(x, y) {
+    fill("#3c5463");
+    rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE * 0.80 , CELL_SIZE, CELL_SIZE / 2, CELL_SIZE / 2, 0 ,0);
+
+    stroke("#658396")
+    // vertical line.
+    line((x * CELL_SIZE) + (CELL_SIZE * 0.80) / 2, (y * CELL_SIZE) + (CELL_SIZE * 0.1), (x * CELL_SIZE) + (CELL_SIZE * 0.80) / 2, (y * CELL_SIZE) + (CELL_SIZE * 0.9));
+    // horizontal line.
+    line((x * CELL_SIZE) + (CELL_SIZE * 0.10), (y * CELL_SIZE) + (CELL_SIZE * .40), (x * CELL_SIZE) + (CELL_SIZE * 0.70), (y * CELL_SIZE) + (CELL_SIZE * .40));
+    stroke(0,0,0); // Set strokes back to black.
 }
