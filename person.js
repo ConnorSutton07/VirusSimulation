@@ -71,41 +71,19 @@ class Person
     update(people, houses, buildings) {
         this.updated = true;
         let pos = [this.current_location[0], this.current_location[1]]
-        if (pos[0] == this.destination[0] && pos[1] == this.destination[1]) {
+        let dest = [this.destination[0], this.destination[1]]
+        if (pos[0] == dest[0] && pos[1] == dest[1]) {
             this.destination = this.getDestination(people, buildings)
             return;
         }
         if (!this.dead) {
             if (this.isMove()) {
-                //Currently allows for movement through buildings 
-                let new_x = pos[0];
-                let new_y = pos[1];
-
-                //console.log("Current: ", pos[0], pos[1])
-
-                if (pos[0] != this.destination[0]) 
-                    new_x = pos[0] + ((this.destination[0] - pos[0]) / Math.abs(this.destination[0] - pos[0]))
-                
-                if (pos[1] != this.destination[1]) 
-                    new_y = pos[1] + ((this.destination[1] - pos[1]) / Math.abs(this.destination[1] - pos[1]))
-
-                if (people[new_x][new_y] == 0)
-                {
-                    people[new_x][new_y] = this;
-                    people[pos[0]][pos[1]] = 0;
-                    this.current_location = [new_x, new_y];
-                }
-                else
-                {
-                    this.randomMove(pos, people);
-                }    
-
+                this.normalMove(pos, people);
             }
             if (this.time_infected == INFECTION_DURATION) {
                 this.been_infected = true;
                 this.infected = false;
             }
-
             if (this.infected) {
                 this.infect(people, houses, buildings) ;
                 this.death();
@@ -116,13 +94,40 @@ class Person
             }
         }
     }
+
+    normalMove(pos, people)
+    {
+        let new_x = pos[0];
+        let new_y = pos[1];
+
+        //console.log("Current: ", pos[0], pos[1])
+
+        if (pos[0] != this.destination[0]) 
+            new_x = pos[0] + ((this.destination[0] - pos[0]) / Math.abs(this.destination[0] - pos[0]))
+        
+        if (pos[1] != this.destination[1]) 
+            new_y = pos[1] + ((this.destination[1] - pos[1]) / Math.abs(this.destination[1] - pos[1]))
+
+        if (people[new_x][new_y] == 0)
+        {
+            people[new_x][new_y] = this;
+            people[pos[0]][pos[1]] = 0;
+            this.current_location = [new_x, new_y];
+        }
+        else
+        {
+            this.randomMove(pos, people);
+        }    
+    }
+
+   
     death() {
         if (Math.random() < DEATH_RATE) {
             this.dead = true;
         }
     }
 
-    infect(people, houses, buildings) {
+    infect(people) {
         let pos = [this.current_location[0], this.current_location[1]];
         for (let i = -1; i < 2; i ++) {
             for (let j = -1; j < 2; j ++) {
@@ -131,7 +136,7 @@ class Person
                     let neighbor = people[pos[0] + i][pos[1] + j]
                     if (neighbor != 0) {
                         if (!neighbor.been_infected && !neighbor.infected) {
-                            let infection_chance = 0.1 - (0.095 * this.mask_wearer) - (0.004 * neighbor.mask_wearer);
+                            let infection_chance = INFECTION_RATE - (0.095 * this.mask_wearer) - (0.004 * neighbor.mask_wearer);
                             if (infection_chance > Math.random())
                                 neighbor.infected = true
                         }

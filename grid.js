@@ -10,7 +10,6 @@ class Grid
         this.generatePopulation();
         this.deaths = 0;
         this.tombstones = [];
-
     }
 
     update() {
@@ -156,12 +155,14 @@ class Grid
              }
          }
 
+        DEATH_RATE = INITIAL_DEATH_RATE + ((amtOfInfectedPeople / amtOfPeople) / 10);
+        
         if (returnDecimal) {
             console.log(amtOfInfectedPeople, amtOfPeople)
             return amtOfInfectedPeople / amtOfPeople;
         }
 
-        return `${floor(amtOfInfectedPeople/amtOfPeople * 100)}% (${amtOfInfectedPeople}/${amtOfPeople})`;
+        return `${floor(amtOfInfectedPeople/amtOfPeople * 100)} % (${amtOfInfectedPeople}/${amtOfPeople})`;
     }
 
     getEmptyPeople()
