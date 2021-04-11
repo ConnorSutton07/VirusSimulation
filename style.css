@@ -8,6 +8,17 @@ h1 {
     text-align: center;
 }
 
+button {
+    padding: 5px 8px 5px;
+    background: #0060A1;
+    color: #C9DFF2;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 550;
+    text-align: center;
+}
+
 .wrapper {
     display: flex;
     justify-content: center;

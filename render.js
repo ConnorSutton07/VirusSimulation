@@ -54,6 +54,11 @@ function setup() {
     infectionDuration.onchange = () => {
         INFECTION_DURATION = infectionDuration.value;
     }
+
+    relaunchSim.onclick = () => {
+        time = 0;
+        newGrid = new Grid();
+    }
 }
   
 function draw() {
