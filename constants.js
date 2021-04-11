@@ -14,10 +14,10 @@ var POPULATION_SIZE = document.getElementById('populationSize').value;
 // People
 
 var MASK_RATE            = document.getElementById('rateMasks').value / 100;
-var SOCIAL_DISTANCE_RATE = document.getElementById('socialDistancing').value / 100;
 var MIGRATION_RATE       = document.getElementById('rateMigration').value / 100;
 var DEATH_RATE           = document.getElementById('lethality').value / 100000;
-var INFECTION_DURATION   = 200;
+var INFECTION_DURATION   = document.getElementById('infectionDuration').value;
+// var SOCIAL_DISTANCE_RATE = document.getElementById('socialDistancing').value / 100;
 
 
 // Rendering

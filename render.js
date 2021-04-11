@@ -3,41 +3,32 @@ function setup() {
     canvas.parent('simulation-window')
     newGrid = new Grid();
 
-    radioFPS1 = select("#one-fps").elt;
-    radioFPS15 = select("#fifteen-fps").elt;
-    radioFPS30 = select("#thirty-fps").elt;
-    radioFPS45 = select("#forty-five-fps").elt;
-    radioFPS60 = select("#sixty-fps").elt;
-    populationSize = select("#populationSize").elt;
-    debug = select("#debug").elt;
+    // Simulation variables.
+    peopleInfected = select("#people-infected");
+    deaths = select("#deaths");
+    timePassed = select("#time-passed");
+
     frameRate(15);
 
     time = 0; 
-     
-    console.log(radioFPS1)
 
-    radioFPS1.onchange = () => {
-        console.log("hi")
+    oneFPS.onchange = () => {
         frameRate(1);
     }
 
-    radioFPS15.onchange = () => {
-        console.log("hi")
+    fifteenFPS.onchange = () => {
         frameRate(15);
     }
 
-    radioFPS30.onchange = () => {
-        console.log("hi")
+    thirtyFPS.onchange = () => {
         frameRate(30);
     }
 
-    radioFPS45.onchange = () => {
-        console.log("hi")
+    fortyFiveFPS.onchange = () => {
         frameRate(45);
     }
 
-    radioFPS60.onchange = () => {
-        console.log("hi")
+    sixtyFPS.onchange = () => {
         frameRate(60);
     }
     console.log(newGrid.population_size);
@@ -49,14 +40,19 @@ function setup() {
     }
 
     lethality.onchange = () => {
-        time = 0;
         DEATH_RATE = lethality.value / 100000;
     }
 
     rateMigration.onchange = () => {
-        time = 0;
         MIGRATION_RATE = rateMigration.value / 100;
-        // newGrid = new Grid();
+    }
+
+    rateMasks.onchange = () => {
+        MASK_RATE = rateMasks.value / 100;
+    }
+
+    infectionDuration.onchange = () => {
+        INFECTION_DURATION = infectionDuration.value;
     }
 }
   
@@ -73,6 +69,11 @@ function draw() {
         displayFPS(time);
         console.log("Migration rate:", MIGRATION_RATE, "Lethality:", DEATH_RATE)
     }
+
+    // Statistics
+    peopleInfected.html(newGrid.getCurrentInfectedAmount());
+    deaths.html(newGrid.getDeaths());
+    timePassed.html(formatTime(time * (123/748)));
     
     newGrid.update();
 }
@@ -171,4 +172,17 @@ function drawBuilding(x, y, size, color) {
 function displayFPS(tick) {
     fill(255, 255, 255);
     text(`FPS: ${floor(frameRate())}`, 0, 10);
+}
+
+function formatTime(totalMinuts) {
+    let days = totalMinuts / 1440;
+    let rDays = floor(days);
+    let hours = (days - rDays) * 24;
+    let rHours = floor(hours);
+    let minuts =  (hours - rHours) * 60;
+    let rMinuts = floor(minuts);
+    // let seconds =  (minuts - rMinuts) * 60;
+    // let rSeconds = floor(seconds);
+
+    return `${rDays} days ${rHours} hours ${rMinuts} minuts`;
 }

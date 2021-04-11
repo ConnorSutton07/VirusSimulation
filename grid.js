@@ -137,6 +137,30 @@ class Grid
         return this.deaths;
     }
 
+    getCurrentInfectedAmount(returnDecimal)
+    {
+        let allPeople = this.getPeople()
+        let amtOfPeople = 0;
+        let amtOfInfectedPeople = 0;
+
+        for (let i = 0; i < 100; i ++) {
+            for (let j = 0; j < 100; j ++) {
+                 if (allPeople[i][j] != 0){
+                    if (allPeople[i][j].infected)
+                        amtOfInfectedPeople++;
+                    
+                    amtOfPeople++;
+                 }
+             }
+         }
+
+        if (returnDecimal) {
+            return amtOfInfectedPeople/amtOfPeople;
+        }
+
+        return `${floor(amtOfInfectedPeople/amtOfPeople * 100)}% (${amtOfInfectedPeople}/${amtOfPeople})`;
+    }
+
     getEmptyPeople()
     {
         let people = [];
